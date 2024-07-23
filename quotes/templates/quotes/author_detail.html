@@ -9,6 +9,9 @@
     <h1>{{ author.name }}</h1>
     <p>{{ author.about }}</p>
     <h2>Quotes by {{ author.name }}</h2>
+    <p>Born: {{ author.born }}</p>
+    <p>Birth Place: {{ author.birth_place }}</p>
+    <p>About: {{ author.about }}</p>
     {% for quote in quotes %}
         <blockquote>
             <p>{{ quote.text }}</p>

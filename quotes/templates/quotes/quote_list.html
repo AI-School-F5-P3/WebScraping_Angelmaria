@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quotes</title>
+</head>
+<body>
+    <h1>Quotes</h1>
+    <ul>
+        {% for quote in quotes %}
+            <li>
+                <h2>{{ quote.text }}</h2>
+                <p>Author: <a href="{% url 'author_detail' quote.author.id %}">{{ quote.author.name }}</a></p>
+                <p>Tags: {% for tag in quote.tags.all %} {{ tag.name }} {% endfor %}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
