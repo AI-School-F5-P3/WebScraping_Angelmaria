@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ author.name }} - XYZ Corp Quotes</title>
+</head>
+<body>
+    <h1>{{ author.name }}</h1>
+    <p>{{ author.about }}</p>
+    <h2>Quotes by {{ author.name }}</h2>
+    {% for quote in quotes %}
+        <blockquote>
+            <p>{{ quote.text }}</p>
+            <p>Tags: {{ quote.tags|join:", " }}</p>
+        </blockquote>
+    {% endfor %}
+    <a href="{% url 'quote_list' %}">Back to all quotes</a>
+</body>
+</html>
