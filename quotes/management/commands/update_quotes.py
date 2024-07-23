@@ -1,22 +1,16 @@
 # quotes/management/commands/update_quotes.py
 
 from django.core.management.base import BaseCommand
-from django.db import transaction
-from quotes.models import Author, Quote, Tag
-import requests
-from bs4 import BeautifulSoup
-import json
+from django.core.management import call_command
 
 class Command(BaseCommand):
-    help = 'Scrapes quotes from the website and updates the database'
+    help = 'Updates quotes by scraping the website and importing to the database'
 
-    def handle(self, *args, **kwargs):
-        # Aquí iría el código del web scraper
-        # ...
-
-        # Luego, el código de importación de datos
-        with transaction.atomic():
-            # Código de importación
-            # ...
-
-        self.stdout.write(self.style.SUCCESS('Successfully updated quotes database'))
+    def handle(self, *args, **options):
+        self.stdout.write('Starting web scraping process...')
+        call_command('web_scraper')
+        
+        self.stdout.write('Starting data import process...')
+        call_command('data_import')
+        
+        self.stdout.write(self.style.SUCCESS('Successfully updated quotes'))

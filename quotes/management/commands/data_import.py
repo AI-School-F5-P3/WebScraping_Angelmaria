@@ -1,30 +1,27 @@
-import json
-import os
-import django
+# quotes/management/commands/data_import.py
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "xyz_quotes.settings")
-django.setup()
-
+from django.core.management.base import BaseCommand
 from quotes.models import Author, Quote, Tag
+import json
 
-def import_data():
-    with open('quotes_data.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+class Command(BaseCommand):
+    help = 'Imports quotes data from JSON file to the database'
 
-    # Import authors
-    for author_name, about in data['authors'].items():
-        Author.objects.get_or_create(name=author_name, defaults={'about': about})
+    def handle(self, *args, **options):
+        with open('quotes_data.json', 'r', encoding='utf-8') as f:
+            data = json.load(f)
 
-    # Import quotes and tags
-    for quote_data in data['quotes']:
-        author = Author.objects.get(name=quote_data['author'])
-        quote = Quote.objects.create(text=quote_data['text'], author=author)
+        # Import authors
+        for author_name, about in data['authors'].items():
+            Author.objects.get_or_create(name=author_name, defaults={'about': about})
 
-        for tag_name in quote_data['tags']:
-            tag, _ = Tag.objects.get_or_create(name=tag_name)
-            quote.tags.add(tag)
+        # Import quotes and tags
+        for quote_data in data['quotes']:
+            author = Author.objects.get(name=quote_data['author'])
+            quote = Quote.objects.create(text=quote_data['text'], author=author)
 
-    print(f"Imported {len(data['quotes'])} quotes and {len(data['authors'])} authors to the database.")
+            for tag_name in quote_data['tags']:
+                tag, _ = Tag.objects.get_or_create(name=tag_name)
+                quote.tags.add(tag)
 
-if __name__ == "__main__":
-    import_data()
+        self.stdout.write(self.style.SUCCESS(f"Imported {len(data['quotes'])} quotes and {len(data['authors'])} authors to the database."))
