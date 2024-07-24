@@ -17,10 +17,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qv=&phbb^#54m802=(ktsd7c=yjgj!wt!$&18e(6s6hox9w_fz'
+SECRET_KEY = os.getenv ('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = []
 
@@ -72,11 +72,11 @@ WSGI_APPLICATION = 'xyz_quotes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv ('BBDD'),  # Nombre de tu base de datos MySQL
-        'USER': os.getenv ('user_db'),
+        'NAME': os.getenv ('DB_NAME'),  # Nombre de tu base de datos MySQL
+        'USER': os.getenv ('DB_USER'),
         'PASSWORD': os.getenv ('DB_PASSWORD'),
-        'HOST': os.getenv ('SERVIDOR'),  # Cambiar si la base de datos está en otro lugar
-        'PORT': os.getenv ('PUERTO'),  # Puerto MySQL
+        'HOST': os.getenv ('DB_HOST', 'db'),  # Cambiar si la base de datos está en otro lugar
+        'PORT': os.getenv ('DB_PORT', '3306'),  # Puerto MySQL
     },
 }
 

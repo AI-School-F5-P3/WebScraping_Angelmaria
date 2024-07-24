@@ -10,15 +10,20 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    env_file:
+      - .env
+
   db:
     image: mysql:8
     environment:
-      MYSQL_DATABASE: 'quotes'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_PASSWORD: 'rootpassword'
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
 
 volumes:
   mysql_data:

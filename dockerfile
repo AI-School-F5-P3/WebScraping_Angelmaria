@@ -18,3 +18,6 @@ EXPOSE 8000
 
 # Comando para ejecutar la aplicación
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Para producción
+# CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:8000"]
+# Reemplaza "myproject.wsgi:application" con la ruta correcta a tu módulo WSGI
