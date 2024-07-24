@@ -4,10 +4,10 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1>{{ author.name }}</h1>
-    <p><strong>Born:</strong> {{ author.born }}</p>
-    <p><strong>Birth Place:</strong> {{ author.birth_place }}</p>
-    <p><strong>About:</strong> {{ author.about }}</p>
+    <h1 class="text-secondary display-4">{{ author.name }}</h1>
+    <p><strong><span class="author-details">Born:</span></strong> {{ author.born }}</p>
+    <p><strong><span class="author-details">Birth Place:</span></strong> {{ author.birth_place }}</p>
+    <p><strong><span class="author-details">About:</span></strong> {{ author.about }}</p>
     {% if author.about_page_url %}
         <p><strong>About Page:</strong> <a href="{{ author.about_page_url }}" target="_blank">{{ author.about_page_url }}</a></p>
     {% endif %}

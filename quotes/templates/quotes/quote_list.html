@@ -5,6 +5,22 @@
 {% block content %}
 <div class="container mt-5">
     <h1 class="text-secondary">Quotes</h1>
+    
+    <!-- Formulario para seleccionar el autor -->
+    <form method="get" action="{% url 'quote_list' %}">
+        <div class="form-group">
+            <label for="author">Select Author:</label>
+            <select id="author" name="author" class="form-control" onchange="this.form.submit()">
+                <option value="">All Authors</option>
+                {% for author in authors %}
+                    <option value="{{ author.id }}" {% if request.GET.author == author.id|stringformat:"s" %}selected{% endif %}>
+                        {{ author.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+    </form>
+
     {% for quote in quotes %}
         <div class="card my-3">
             <div class="card-body">
