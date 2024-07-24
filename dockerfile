@@ -7,6 +7,9 @@ WORKDIR /app
 # Copia los archivos de requisitos primero para aprovechar la caché de Docker
 COPY requirements.txt .
 
+COPY wait-for-it.sh /usr/local/bin/wait-for-it
+RUN chmod +x /usr/local/bin/wait-for-it
+
 # Instala las dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 

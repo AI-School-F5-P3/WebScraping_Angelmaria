@@ -1,9 +1,9 @@
-version: '3'
+version: '3.8'
 
 services:
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: ["wait-for-it", "db:3306", "-t", "60", "--", "python", "manage.py", "runserver", "0.0.0.0:8000"]
     volumes:
       - .:/app
     ports:
@@ -14,11 +14,9 @@ services:
       - .env
 
   db:
-    image: mysql:8
+    image: mysql:8.0
     environment:
       MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - mysql_data:/var/lib/mysql
