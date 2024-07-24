@@ -78,8 +78,19 @@ class Command(BaseCommand):
         born_location = soup.find('span', class_='author-born-location').text
         about = soup.find('div', class_='author-description').text.strip()
 
+        # Convert the date to YYYY-MM-DD format
+        born_date = self.convert_date(born_date)
+
         return {
             'born': born_date,
             'birth_place': born_location.strip('in '),
             'about': about
         }
+
+    def convert_date(self, date_str):
+        try:
+            date_obj = datetime.strptime(date_str, '%B %d, %Y')
+            return date_obj.strftime('%Y-%m-%d')
+        except ValueError:
+            logger.warning(f"Date '{date_str}' is not in a recognized format.")
+            return None

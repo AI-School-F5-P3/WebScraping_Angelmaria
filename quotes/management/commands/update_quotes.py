@@ -51,7 +51,3 @@ class Command(BaseCommand):
         except Exception as e:
             logger.error(f"An error occurred during quote update: {str(e)}")
             self.stdout.write(self.style.ERROR(f'Quote update failed: {str(e)}'))
-
-if __name__ == '__main__':
-    command = Command()
-    command.handle()
