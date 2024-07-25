@@ -35,12 +35,12 @@
                 <ul class="pagination">
                     {% if page_obj.has_previous %}
                         <li class="page-item">
-                            <a class="page-link" href="?page=1{% if selected_author %}&author={{ selected_author }}{% endif %}" aria-label="First">
+                            <a class="page-link" href="?page=1{% if selected_author %}&author={{ selected_author }}{% endif %}{% if selected_tag %}&tag={{ selected_tag }}{% endif %}" aria-label="First">
                                 <span aria-hidden="true">&laquo;&laquo;</span>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if selected_author %}&author={{ selected_author }}{% endif %}" aria-label="Previous">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if selected_author %}&author={{ selected_author }}{% endif %}{% if selected_tag %}&tag={{ selected_tag }}{% endif %}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
@@ -60,19 +60,19 @@
                             </li>
                         {% else %}
                             <li class="page-item">
-                                <a class="page-link" href="?page={{ num }}{% if selected_author %}&author={{ selected_author }}{% endif %}">{{ num }}</a>
+                                <a class="page-link" href="?page={{ num }}{% if selected_author %}&author={{ selected_author }}{% endif %}{% if selected_tag %}&tag={{ selected_tag }}{% endif %}">{{ num }}</a>
                             </li>
                         {% endif %}
                     {% endfor %}
                     
                     {% if page_obj.has_next %}
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if selected_author %}&author={{ selected_author }}{% endif %}" aria-label="Next">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if selected_author %}&author={{ selected_author }}{% endif %}{% if selected_tag %}&tag={{ selected_tag }}{% endif %}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if selected_author %}&author={{ selected_author }}{% endif %}" aria-label="Last">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if selected_author %}&author={{ selected_author }}{% endif %}{% if selected_tag %}&tag={{ selected_tag }}{% endif %}" aria-label="Last">
                                 <span aria-hidden="true">&raquo;&raquo;</span>
                             </a>
                         </li>
@@ -111,6 +111,26 @@
                 </div>
             </div>
 
+            <!-- Formulario para seleccionar la etiqueta -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <form method="get" action="{% url 'quote_list' %}">
+                        <div class="form-group">
+                            <label for="tag">Select Tag:</label>
+                            <select id="tag" name="tag" class="form-control" onchange="this.form.submit()">
+                                <option value="">All Tags</option>
+                                {% for tag in tags %}
+                                    <option value="{{ tag.id }}" {% if selected_tag == tag.id|stringformat:"s" %}selected{% endif %}>
+                                        {{ tag.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="mt-4">
+
             <h2 class="text-secondary mb-3">Top 10</h2>
             <!-- Botón para mostrar la distribución de citas por etiqueta -->
             <div class="card mb-3">
@@ -126,6 +146,7 @@
                 </div>
             </div>
 
+            <!-- Botón para mostrar la distribución de citas por década -->
             <div class="card mb-3">
                 <div class="card-body text-center" style="border-top: 10px solid rgba(8, 145, 88, 0.828);">
                     <button id="show-author-decade-distribution" class="btn btn-primary"><span style="font-weight: bold">Top 10 Décadas</span></button>
