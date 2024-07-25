@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-secondary">Quotes with tag: <span style="border:1px solid grey; padding: 5px;border-radius:10px; background-color:darkgrey; color:white">{{ tag.name }}</span></h1>
+    <h1 class="text-secondary">Quotes with tag: <span class="tag-detalle">{{ tag.name }}</span></h1>
     
     {% for quote_tag in quotes %}
         <div class="card my-3">
@@ -16,5 +16,6 @@
             </div>
         </div>
     {% endfor %}
+    <a href="{% url 'quote_list' %}" class="btn btn-success ml-5">Volver</a>
 </div>
 {% endblock %}
