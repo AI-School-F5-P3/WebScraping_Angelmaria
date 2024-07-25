@@ -4,14 +4,15 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-secondary display-4">{{ author.name }}</h1>
+    <h1 class="text-secondary display-4 sticky-top mb-2" style="background: white;">{{ author.name }}<a href="{% url 'quote_list' %}" class="btn btn-success ml-5">Volver</a></h1>
+    <hr>
     <p><strong><span class="author-details">Born:</span></strong> {{ author.born }}</p>
     <p><strong><span class="author-details">Birth Place:</span></strong> {{ author.birth_place }}</p>
     <p><strong><span class="author-details">About:</span></strong> {{ author.about }}</p>
     {% if author.about_page_url %}
         <p><strong>About Page:</strong> <a href="{{ author.about_page_url }}" target="_blank">{{ author.about_page_url }}</a></p>
     {% endif %}
-    <h2>Quotes</h2>
+    <h2 class="text-secondary">Quotes</h2>
     {% for quote in author.quotes.all %}
         <div class="card my-3">
             <div class="card-body">
@@ -21,7 +22,7 @@
                 <div class="mt-2">
                     <strong>Tags:</strong>
                     {% for quote_tag in quote.quote_tags.all %}
-                        <span class="badge badge-primary">{{ quote_tag.tag.name }}</span>
+                    <a href="{% url 'tag_detail' quote_tag.tag.id %}"><span class="badge badge-primary">{{ quote_tag.tag.name }}</span></a>
                     {% empty %}
                         <span class="text-muted">No tags available</span>
                     {% endfor %}

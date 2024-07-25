@@ -49,6 +49,7 @@ class Command(BaseCommand):
                     author_info = self.scrape_author_info(author_url)
                     if author_info:
                         authors[quote['author']] = author_info
+                        authors[quote['author']]['about_page_url'] = author_url 
 
             page += 1
 

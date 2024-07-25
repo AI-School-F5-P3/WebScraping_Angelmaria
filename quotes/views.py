@@ -1,7 +1,7 @@
 # quotes/views.py
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
-from .models import Quote, Author
+from .models import Quote, Author, Tag, QuoteTag
 
 def quote_list(request):
     author_id = request.GET.get('author')
@@ -28,3 +28,9 @@ def quote_list(request):
 def author_detail(request, author_id):
     author = get_object_or_404(Author, pk=author_id)
     return render(request, 'quotes/author_detail.html', {'author': author})
+
+def tag_detail(request, tag_id):
+    tag = get_object_or_404(Tag, id=tag_id)
+    quotes = QuoteTag.objects.filter(tag=tag)
+    return render(request, 'quotes/tag_detail.html', {'tag': tag, 'quotes': quotes})
+
