@@ -6,9 +6,9 @@
 <div class="container mt-5">
     <h1 class="text-secondary display-4 sticky-top mb-2" style="background: white;">{{ author.name }}<a href="{% url 'quote_list' %}" class="btn btn-success ml-5">Volver</a></h1>
     <hr>
-    <p><strong><span class="author-details">Born:</span></strong> {{ author.born }}</p>
-    <p><strong><span class="author-details">Birth Place:</span></strong> {{ author.birth_place }}</p>
-    <p><strong><span class="author-details">About:</span></strong> {{ author.about }}</p>
+    <p><strong><span class="author-details">Born</span></strong> {{ author.born }}</p>
+    <p><strong><span class="author-details">Birth Place</span></strong> {{ author.birth_place }}</p>
+    <p><strong><span class="author-details">About</span></strong> {{ author.about }}</p>
     {% if author.about_page_url %}
         <p><strong>About Page:</strong> <a href="{{ author.about_page_url }}" target="_blank">{{ author.about_page_url }}</a></p>
     {% endif %}
