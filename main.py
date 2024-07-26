@@ -29,8 +29,8 @@ def write_file(text):
 
 def main():
   driver = get_driver()
-  time.sleep(2)
   while True:
+    time.sleep(2)
     element = driver.find_element(by="xpath", value="/html/body/div[1]/div/h1[2]")
     text = str(clean_text(element.text))
     write_file(text)
