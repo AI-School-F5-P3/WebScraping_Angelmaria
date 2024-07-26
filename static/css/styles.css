@@ -28,3 +28,19 @@
     font-weight:lighter; 
     font-size: 1.3em;
 }
+.boton-sidebar {
+    font-weight: bold; 
+    /* color: #054589; */
+    color: white;
+}
+.navbar-li {
+    font-family: 'Montserrat';
+    font-size: 1.2rem;
+    text-transform: capitalize;
+}
+.navbar-li li {
+    padding: 0 24px;
+}
+html {
+    scroll-behavior: smooth;
+}

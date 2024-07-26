@@ -9,4 +9,5 @@ urlpatterns = [
     path('generate-tag-distribution-chart/', views.generate_tag_distribution_chart, name='generate_tag_distribution_chart'),
     path('generate-author-distribution-chart/', views.generate_author_distribution_chart, name='generate_author_distribution_chart'),
     path('generate-author-decade-distribution-chart/', views.generate_author_decade_distribution_chart, name='generate_author_decade_distribution_chart'),
+    path('about/', views.about, name='about'),
 ]
