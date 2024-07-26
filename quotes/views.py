@@ -148,3 +148,8 @@ def generate_author_decade_distribution_chart(request):
     plt.savefig(response, format='png')
     plt.close()
     return response
+
+def about(request):
+    # Obtener todos los autores y sus URLs
+    authors = Author.objects.all()
+    return render(request, 'quotes/about.html', {'authors': authors})
