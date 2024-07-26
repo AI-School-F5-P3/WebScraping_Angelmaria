@@ -34,12 +34,14 @@
     color: white;
 }
 .navbar-li {
-    font-family: 'Montserrat';
-    font-size: 1.2rem;
+    font-family: 'Shadows Into Light';
+    font-size: 1.3rem;
+    font-weight: 600;
     text-transform: capitalize;
 }
 .navbar-li li {
     padding: 0 24px;
+    color: rgba(21, 43, 85, 0.811);
 }
 html {
     scroll-behavior: smooth;
