@@ -30,7 +30,12 @@ def main():
   driver.find_element(by="id", value="id_password").send_keys("automatedautomated" + Keys.RETURN)
   time.sleep(2)
   
+  # Click on Home link and wait 2 seconds
   driver.find_element(by="xpath", value="/html/body/nav/div/a").click()
-  print(driver.current_url)
+  time.sleep(2)
+  
+  # Scrape the temperature value
+  text = driver.find_element(by="xpath", value="/html/body/div[1]/div/h1[2]").text
+  return clean_text(text)
 
 print(main())
