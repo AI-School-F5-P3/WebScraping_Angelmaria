@@ -168,3 +168,5 @@ __pycache__
 .DS_Store
 
 logs/
+
+2024*.txt

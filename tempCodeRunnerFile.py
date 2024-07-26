@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 from datetime import datetime as dt
-import os 
 
 def get_driver():
   # Set options to make browsing easier
@@ -24,8 +23,7 @@ def clean_text(text):
   
 def write_file(text):
     """ Write input text into a text file """
-    directory = os.path.dirname(os.path.abspath(__file__))
-    filename = os.path.join(directory, f"{dt.now().strftime('%Y-%m-%d.%H-%M-%S')}.txt")
+    filename = f"{dt.now().strftime('%Y-%m-%d.%H-%M-%S')}.txt"
     with open(filename, 'w') as file: 
         file.write(text)
 
