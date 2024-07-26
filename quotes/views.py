@@ -51,28 +51,6 @@ def tag_detail(request, tag_id):
     quotes = QuoteTag.objects.filter(tag=tag)
     return render(request, 'quotes/tag_detail.html', {'tag': tag, 'quotes': quotes})
 
-def generate_quote_chart(request):
-    quotes = Quote.objects.all().values('author_id')
-    authors = Author.objects.all().values('id', 'name')
-    
-    quotes_df = pd.DataFrame(list(quotes))
-    authors_df = pd.DataFrame(list(authors))
-    
-    quotes_by_author = quotes_df.groupby('author_id').size().reset_index(name='quote_count')
-    authors_with_quote_count = authors_df.merge(quotes_by_author, left_on='id', right_on='author_id')
-    
-    plt.figure(figsize=(10, 8))
-    sns.barplot(x='quote_count', y='name', data=authors_with_quote_count.sort_values('quote_count', ascending=False))
-    plt.title('Number of Quotes by Author')
-    plt.xlabel('Number of Quotes')
-    plt.ylabel('Author')
-    plt.tight_layout()
-    
-    response = HttpResponse(content_type='image/png')
-    plt.savefig(response, format='png')
-    plt.close()
-    return response
-
 def generate_tag_distribution_chart(request):
     tags = Tag.objects.all()
     tag_counts = QuoteTag.objects.values('tag_id').annotate(count=Count('quote_id'))
