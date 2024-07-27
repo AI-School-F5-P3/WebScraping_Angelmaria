@@ -36,8 +36,8 @@ class WebScraperTests(TestCase):
         </html>
         '''
         mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.content = html_content
+        mock_response.status_code = 200 # Simula una respuesta HTTP exitosa con contenido HTML que incluye una cita.
+        mock_response.content = html_content # Verifica que el scraper extraiga correctamente la cita, el autor y las etiquetas.
         mock_get.return_value = mock_response
 
         cmd = WebScraperCommand()
@@ -45,7 +45,7 @@ class WebScraperTests(TestCase):
         cmd.handle()
 
         self.assertTrue(os.path.exists(self.test_json_path))
-        with open(self.test_json_path, 'r', encoding='utf-8') as f:
+        with open(self.test_json_path, 'r', encoding='utf-8') as f: ## Comprueba que los datos se guarden correctamente en un archivo JSON.
             data = json.load(f)
             self.assertEqual(len(data['quotes']), 1)
             self.assertEqual(data['quotes'][0]['text'], "Life is what happens when you're busy making other plans.")
@@ -65,11 +65,11 @@ class WebScraperTests(TestCase):
         '''
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.content = html_content
+        mock_response.content = html_content # Simula una respuesta HTTP exitosa con información del autor.
         mock_get.return_value = mock_response
 
         cmd = WebScraperCommand()
-        author_info = cmd.scrape_author_info("https://quotes.toscrape.com/author/John-Lennon/")
+        author_info = cmd.scrape_author_info("https://quotes.toscrape.com/author/John-Lennon/") # Verifica que el scraper extraiga correctamente la fecha de nacimiento, lugar de nacimiento y biografía del autor.
 
         self.assertEqual(author_info['born'], '1940-10-09')
         self.assertEqual(author_info['birth_place'], 'Liverpool, England')
@@ -77,8 +77,8 @@ class WebScraperTests(TestCase):
 
     def test_convert_date(self):
         cmd = WebScraperCommand()
-        self.assertEqual(cmd.convert_date('October 9, 1940'), '1940-10-09')
-        self.assertIsNone(cmd.convert_date('Invalid Date'))
+        self.assertEqual(cmd.convert_date('October 9, 1940'), '1940-10-09') # Verifica que convierta correctamente una fecha en formato de texto a formato ISO.
+        self.assertIsNone(cmd.convert_date('Invalid Date')) # Comprueba que devuelva None para una fecha inválida.
 
     @patch('requests.get')
     def test_scrape_quotes_no_quotes(self, mock_get):
@@ -91,13 +91,14 @@ class WebScraperTests(TestCase):
         '''
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.content = html_content
+        mock_response.content = html_content # Simula una respuesta HTTP sin citas.
         mock_get.return_value = mock_response
 
         cmd = WebScraperCommand()
         cmd.handle()
 
         self.assertTrue(os.path.exists(self.test_json_path))
-        with open(self.test_json_path, 'r', encoding='utf-8') as f:
+        with open(self.test_json_path, 'r', encoding='utf-8') as f: # Verifica que el scraper maneje correctamente esta situación y guarde un archivo JSON vacío.
             data = json.load(f)
             self.assertEqual(len(data['quotes']), 0)
+            
