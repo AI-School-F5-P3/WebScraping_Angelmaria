@@ -1,15 +1,25 @@
 # quotes/tests.py
 import json
+import os
 from django.test import TestCase
 from django.core.management import call_command
 from unittest.mock import patch, MagicMock
-from bs4 import BeautifulSoup
+from quotes.management.commands.web_scraper import Command as WebScraperCommand
 
 class WebScraperTests(TestCase):
     
+    def setUp(self):
+        self.test_json_path = 'test_quotes_data.json'
+        self.original_json_path = WebScraperCommand.json_file_path
+        WebScraperCommand.json_file_path = self.test_json_path
+
+    def tearDown(self):
+        WebScraperCommand.json_file_path = self.original_json_path
+        if os.path.exists(self.test_json_path):
+            os.remove(self.test_json_path)
+
     @patch('requests.get')
     def test_scrape_quotes_success(self, mock_get):
-        # Simular una respuesta HTTP exitosa con BeautifulSoup
         html_content = '''
         <html>
             <body>
@@ -30,11 +40,12 @@ class WebScraperTests(TestCase):
         mock_response.content = html_content
         mock_get.return_value = mock_response
 
-        # Llamar al comando de gestión para ejecutar el scraper
-        call_command('web_scraper')
+        cmd = WebScraperCommand()
+        cmd.test_mode = True  # Activar el modo de prueba
+        cmd.handle()
 
-        # Verificar que el archivo JSON se haya creado correctamente
-        with open('quotes_data.json', 'r', encoding='utf-8') as f:
+        self.assertTrue(os.path.exists(self.test_json_path))
+        with open(self.test_json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
             self.assertEqual(len(data['quotes']), 1)
             self.assertEqual(data['quotes'][0]['text'], "Life is what happens when you're busy making other plans.")
@@ -43,7 +54,6 @@ class WebScraperTests(TestCase):
 
     @patch('requests.get')
     def test_scrape_author_info_success(self, mock_get):
-        # Simular una respuesta HTTP exitosa con BeautifulSoup
         html_content = '''
         <html>
             <body>
@@ -58,29 +68,20 @@ class WebScraperTests(TestCase):
         mock_response.content = html_content
         mock_get.return_value = mock_response
 
-        # Crear una instancia de la clase Command para probar scrape_author_info
-        from quotes.management.commands.web_scraper import Command
-        cmd = Command()
+        cmd = WebScraperCommand()
         author_info = cmd.scrape_author_info("https://quotes.toscrape.com/author/John-Lennon/")
 
-        # Verificar que la información del autor se haya extraído correctamente
         self.assertEqual(author_info['born'], '1940-10-09')
         self.assertEqual(author_info['birth_place'], 'Liverpool, England')
         self.assertEqual(author_info['about'], 'John Lennon was an English singer, songwriter, and peace activist.')
 
-    @patch('requests.get')
-    def test_convert_date(self, mock_get):
-        # Crear una instancia de la clase Command para probar convert_date
-        from quotes.management.commands.web_scraper import Command
-        cmd = Command()
-
-        # Probar la conversión de fechas
+    def test_convert_date(self):
+        cmd = WebScraperCommand()
         self.assertEqual(cmd.convert_date('October 9, 1940'), '1940-10-09')
         self.assertIsNone(cmd.convert_date('Invalid Date'))
 
     @patch('requests.get')
     def test_scrape_quotes_no_quotes(self, mock_get):
-        # Simular una respuesta HTTP sin citas
         html_content = '''
         <html>
             <body>
@@ -93,10 +94,10 @@ class WebScraperTests(TestCase):
         mock_response.content = html_content
         mock_get.return_value = mock_response
 
-        # Llamar al comando de gestión para ejecutar el scraper
-        call_command('web_scraper')
+        cmd = WebScraperCommand()
+        cmd.handle()
 
-        # Verificar que el archivo JSON se haya creado correctamente pero sin citas
-        with open('quotes_data.json', 'r', encoding='utf-8') as f:
+        self.assertTrue(os.path.exists(self.test_json_path))
+        with open(self.test_json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
             self.assertEqual(len(data['quotes']), 0)

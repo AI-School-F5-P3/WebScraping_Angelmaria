@@ -75,7 +75,7 @@ DATABASES = {
         'NAME': os.getenv ('DB_NAME'),  # Nombre de tu base de datos MySQL
         'USER': os.getenv ('DB_USER'),
         'PASSWORD': os.getenv ('DB_PASSWORD'),
-        'HOST': os.getenv ('DB_HOST', 'localhost'),  # Cambiar si la base de datos está en otro lugar
+        'HOST': os.getenv ('DB_HOST', 'db'),  # Cambiar si la base de datos está en otro lugar
         'PORT': os.getenv ('DB_PORT', '3306'),  # Puerto MySQL
     },
 }

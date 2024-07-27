@@ -11,6 +11,11 @@ logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     help = 'Scrapes quotes and author information from the website'
+    json_file_path = 'quotes_data.json'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.test_mode = False
 
     def handle(self, *args, **options):
         self.scrape_quotes()
@@ -20,8 +25,9 @@ class Command(BaseCommand):
         quotes = []
         authors = {}
         page = 1
+        max_pages = 1 if self.test_mode else 5
 
-        while True:
+        while page <= max_pages:
             url = f"{base_url}/page/{page}/"
             try:
                 response = requests.get(url)
@@ -61,7 +67,7 @@ class Command(BaseCommand):
         }
 
         try:
-            with open('quotes_data.json', 'w', encoding='utf-8') as f:
+            with open(self.json_file_path, 'w', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=4)
             self.stdout.write(self.style.SUCCESS(f'Successfully scraped {len(quotes)} quotes and {len(authors)} authors'))
         except IOError as e:
@@ -77,9 +83,16 @@ class Command(BaseCommand):
 
         soup = BeautifulSoup(response.content, 'html.parser')
         
-        born_date = soup.find('span', class_='author-born-date').text
-        born_location = soup.find('span', class_='author-born-location').text
-        about = soup.find('div', class_='author-description').text.strip()
+        born_date = soup.find('span', class_='author-born-date')
+        born_location = soup.find('span', class_='author-born-location')
+        about = soup.find('div', class_='author-description')
+
+        if not all([born_date, born_location, about]):
+            return None
+
+        born_date = born_date.text
+        born_location = born_location.text
+        about = about.text.strip()
 
         # Convert the date to YYYY-MM-DD format
         born_date = self.convert_date(born_date)
