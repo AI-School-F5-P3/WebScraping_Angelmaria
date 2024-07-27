@@ -29,6 +29,7 @@ class Command(BaseCommand):
 
         while page <= max_pages:
             url = f"{base_url}/page/{page}/"
+            # Manejo de errores de red y HTTP: maneja cualquier excepción que pueda ocurrir durante la solicitud HTTP, incluyendo problemas de conexión, timeouts, y códigos de estado HTTP no exitosos.
             try:
                 response = requests.get(url)
                 response.raise_for_status()
@@ -65,7 +66,7 @@ class Command(BaseCommand):
             'quotes': quotes,
             'authors': authors
         }
-
+        # Manejo de errores al escribir el archivo JSON: maneja errores que puedan ocurrir al intentar escribir los datos scrapeados en un archivo JSON.
         try:
             with open(self.json_file_path, 'w', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=4)
@@ -74,6 +75,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR(f"Failed to write data to file: {str(e)}"))
 
     def scrape_author_info(self, author_url):
+        # Manejo de errores al obtener información del autor: maneja errores que puedan ocurrir al intentar obtener información específica del autor.
         try:
             response = requests.get(author_url)
             response.raise_for_status()
@@ -87,6 +89,7 @@ class Command(BaseCommand):
         born_location = soup.find('span', class_='author-born-location')
         about = soup.find('div', class_='author-description')
 
+        # Manejo de elementos faltantes en la página: verifica si todos los elementos esperados están presentes en la página del autor. Si falta alguno, retorna None en lugar de intentar procesar datos incompletos.
         if not all([born_date, born_location, about]):
             return None
 
@@ -104,6 +107,7 @@ class Command(BaseCommand):
         }
 
     def convert_date(self, date_str):
+        # Manejo de errores de parseo de fecha: maneja el caso en que la fecha no esté en el formato esperado.
         try:
             date_obj = datetime.strptime(date_str, '%B %d, %Y')
             return date_obj.strftime('%Y-%m-%d')
