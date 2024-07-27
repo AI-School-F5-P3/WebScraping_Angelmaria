@@ -45,11 +45,13 @@ class Command(BaseCommand):
                 quotes.append(quote)
 
                 if quote['author'] not in authors:
-                    author_url = base_url + quote_div.find('a')['href']
-                    author_info = self.scrape_author_info(author_url)
-                    if author_info:
-                        authors[quote['author']] = author_info
-                        authors[quote['author']]['about_page_url'] = author_url 
+                    author_tag = quote_div.find('a')
+                    if author_tag and 'href' in author_tag.attrs:
+                        author_url = base_url + author_tag['href']
+                        author_info = self.scrape_author_info(author_url)
+                        if author_info:
+                            authors[quote['author']] = author_info
+                            authors[quote['author']]['about_page_url'] = author_url 
 
             page += 1
 

@@ -3,7 +3,7 @@
 {% block title %}Author Details{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-3">
     <h1 class="text-secondary display-4 sticky-top mb-2" style="background: white;">{{ author.name }}<a href="{% url 'quote_list' %}" class="btn btn-success ml-5">back</a></h1>
     <hr>
     <p><strong><span class="author-details text-secondary">Born</span></strong> {{ author.born }}</p>
@@ -12,7 +12,7 @@
     {% if author.about_page_url %}
         <p><strong>About Page:</strong> <a href="{{ author.about_page_url }}" target="_blank">{{ author.about_page_url }}</a></p>
     {% endif %}
-    <h2 class="text-secondary">Quotes</h2>
+    <h2>Quotes</h2>
     {% for quote in author.quotes.all %}
         <div class="card my-3">
             <div class="card-body">
