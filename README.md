@@ -64,7 +64,7 @@ CREATE TABLE quote_tags (
 ![image](https://github.com/user-attachments/assets/25daa383-fe4f-4b33-ba7e-9049f1a4ed9d)
 
 
-### Librerías de Web Scraping, Beatiful Soup o Scrapy
+### Librerías de Web Scraping, Beatiful Soup o Scrapy 🛠️
 
 En el archivo web_scraper.py estamos usando la librería Beautiful Soup para hacer web scraping. Cada librería tiene sus propias fortalezas:
 **Beautiful Soup:**
@@ -83,7 +83,7 @@ En el archivo web_scraper.py estamos usando la librería Beautiful Soup para hac
 
 En este caso, Beautiful Soup es una buena elección porque el sitio que estamos scrapeando es relativamente simple y no necesitamos las características avanzadas de Scrapy.
 
-## Estructura del Proyecto
+## Estructura del Proyecto 📁
 
 ```markdown
 django-web-scraping/
@@ -122,7 +122,7 @@ django-web-scraping/
 
 ```
 
-# Documentación del Proyecto de Web Scraping con Django
+# Documentación del Proyecto de Web Scraping con Django 📄
 
 ## 1. Visión General del Proyecto
 
