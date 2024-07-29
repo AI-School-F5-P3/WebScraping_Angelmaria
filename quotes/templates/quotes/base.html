@@ -42,6 +42,19 @@
     <div class="container">
         {% block content %}{% endblock %}
     </div>
+
+    <footer class="bg-light text-center text-lg-start py-3 my-2">
+        <ul class="nav justify-content-center pb-3 mb-3 mt-3">
+            <li class="nav-item"><a href="{% url 'quote_list' %}" class="nav-link px-2 text-secondary">Quotes</a></li>
+            <li class="nav-item"><a href="{% url 'quote_list' %}#selectors" class="nav-link px-2 text-secondary">Selectors</a></li>
+            <li class="nav-item"><a href="{% url 'quote_list' %}#top-10" class="nav-link px-2 text-secondary">Top 10</a></li>
+            <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-secondary">About</a></li>
+          </ul>
+
+        <div class="text-center p-3 bg-dark text-white">
+            &copy; {{ current_year }} <span style="font-weight: 900;">Web Scraping</span> with <span style="font-weight: 900;">Django</span>. All rights reserved.
+        </div>
+    </footer>
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>

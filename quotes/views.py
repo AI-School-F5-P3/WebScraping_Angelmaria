@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 from django.http import HttpResponse
 from django.db.models import Count
+from datetime import datetime
 
 # Configurar Matplotlib para usar el backend 'Agg'
 matplotlib.use('Agg')
@@ -33,6 +34,9 @@ def quote_list(request):
     # Obtener la lista de autores y etiquetas para los formularios
     authors = Author.objects.all()
     tags = Tag.objects.all()  # Obtén todas las etiquetas
+    
+    # Obtener el año actual para actualizar dinámicamente fecha del footer
+    current_year = datetime.now().year
 
     return render(request, 'quotes/quote_list.html', {
         'page_obj': page_obj,
@@ -40,6 +44,7 @@ def quote_list(request):
         'tags': tags,  # Añade las etiquetas al contexto
         'selected_author': author_id,
         'selected_tag': tag_id,  # Añade la etiqueta seleccionada al contexto
+        'current_year': current_year,
     })
 
 def author_detail(request, author_id):
