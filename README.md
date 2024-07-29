@@ -39,7 +39,8 @@ CREATE TABLE quote_tags (
 
 ```
 
-![Untitled]([https://prod-files-secure.s3.us-west-2.amazonaws.com/fd601164-f93c-4e8c-811f-4ddad4d5af3e/4e5f7b69-a94b-4f80-8300-447d28608f73/Untitled.png](https://beaded-sociology-706.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ffd601164-f93c-4e8c-811f-4ddad4d5af3e%2F4e5f7b69-a94b-4f80-8300-447d28608f73%2FUntitled.png?table=block&id=0139a48f-dcc2-471e-8367-eeb9d1937db2&spaceId=fd601164-f93c-4e8c-811f-4ddad4d5af3e&width=2000&userId=&cache=v2)
+![image](https://github.com/user-attachments/assets/25daa383-fe4f-4b33-ba7e-9049f1a4ed9d)
+
 
 ### Librerías de Web Scraping, Beatiful Soup o Scrapy
 
