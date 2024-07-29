@@ -1,3 +1,0 @@
-chromium==0.0.0
-chromedriver==2.24.1
-pip==24.1.2
