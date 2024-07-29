@@ -118,7 +118,7 @@ django-web-scraping/
 
 ## 3. Estructura del Proyecto
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fd601164-f93c-4e8c-811f-4ddad4d5af3e/ee287479-46d0-491d-b6bf-747aadf49e73/Untitled.png)
+![image](https://github.com/user-attachments/assets/2ab08321-7272-4935-a787-d3447d52c2fa)
 
 ## 4. Instalación y Configuración
 
@@ -299,15 +299,15 @@ Vista: `generate_author_decade_distribution_chart`
 
 - Gráfico de distribución de etiquetas
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fd601164-f93c-4e8c-811f-4ddad4d5af3e/222e4d1d-1033-4aab-87e6-b82a377c898d/Untitled.png)
+![image](https://github.com/user-attachments/assets/87bae038-9a36-4258-8c5f-57f2d883cfcf)
 
 - Gráfico de distribución de autores
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fd601164-f93c-4e8c-811f-4ddad4d5af3e/0766d446-5ee3-4acd-9a57-dd96cd64e805/Untitled.png)
+![image](https://github.com/user-attachments/assets/057ef282-5c65-4ae3-91fa-ea34faf57768)
 
 - Gráfico de distribución de autores por década
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fd601164-f93c-4e8c-811f-4ddad4d5af3e/0af025ad-e0b6-474c-8cd0-df68b8262b21/Untitled.png)
+![image](https://github.com/user-attachments/assets/d1101ba8-d0a4-4ecd-aa76-eed0ba873bcf)
 
 ## 9. Test
 
@@ -565,7 +565,7 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulte el archivo `LICENS
 La Licencia MIT es una licencia de software permisiva que permite la reutilización del software dentro de software propietario siempre que se incluya el texto de la licencia. Es compatible con muchas licencias copyleft, como la GNU General Public License.
 
 ## 16. Información de Contacto
-`Angel Maria Martinez Allue
 
-https://www.linkedin.com/in/angelmariamartinez/`
+Perfil de Linkedin
+https://www.linkedin.com/in/angelmariamartinez/
 
