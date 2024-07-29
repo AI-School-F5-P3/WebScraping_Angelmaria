@@ -25,7 +25,7 @@ class Command(BaseCommand):
         quotes = []
         authors = {}
         page = 1
-        max_pages = 1 if self.test_mode else 5
+        max_pages = 1 if self.test_mode else 10
 
         while page <= max_pages:
             url = f"{base_url}/page/{page}/"
