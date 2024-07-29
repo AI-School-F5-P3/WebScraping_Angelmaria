@@ -1,6 +1,28 @@
 # Web Scraping - Proyecto Individual
 
-Estructura de la base de datos MySQL
+## Índice
+1. [Estructura de la base de datos MySQL](#estructura-de-la-base-de-datos-mysql) 📊
+2. [Librerías de Web Scraping, Beatiful Soup o Scrapy](#librerías-de-web-scraping-beatiful-soup-o-scrapy) 🛠️
+3. [Estructura del Proyecto](#estructura-del-proyecto) 📁
+4. [Documentación del Proyecto de Web Scraping con Django](#documentación-del-proyecto-de-web-scraping-con-django) 📄
+    - [1. Visión General del Proyecto](#1-visión-general-del-proyecto)
+    - [2. Stack Tecnológico](#2-stack-tecnológico)
+    - [3. Estructura del Proyecto](#3-estructura-del-proyecto)
+    - [4. Instalación y Configuración](#4-instalación-y-configuración)
+    - [5. Componentes Principales](#5-componentes-principales)
+    - [6. Modelos de Datos](#6-modelos-de-datos)
+    - [7. Vistas y URLs (endpoints)](#7-vistas-y-urls-endpoints)
+    - [8. Visualización de Datos](#8-visualización-de-datos)
+    - [9. Test](#9-test)
+    - [10. Despliegue](#10-despliegue)
+    - [11. Mantenimiento y Actualizaciones](#11-mantenimiento-y-actualizaciones)
+    - [12. Solución de Problemas](#12-solución-de-problemas)
+    - [13. Mejoras Futuras](#13-mejoras-futuras)
+    - [14. Contribución](#14-contribución)
+    - [15. Licencia](#15-licencia)
+    - [16. Información de Contacto](#16-información-de-contacto)
+
+## Estructura de la base de datos MySQL 📊
 
 ```sql
 DROP DATABASE IF EXISTS quotes;
