@@ -19,6 +19,10 @@ def get_driver():
         "profile.password_manager_enabled": False
     }
     options.add_experimental_option("prefs", prefs)
+    
+    # Configurar el perfil de usuario de Chrome
+    user_data_dir = "C:/Users/Person 1/AppData/Local/Google/Chrome/User Data"  # Ruta a la carpeta User Data de Chrome
+    options.add_argument(f"user-data-dir={user_data_dir}")  # Usar el perfil de usuario
 
     # Inicializar el driver de Chrome con las opciones configuradas
     driver = webdriver.Chrome(options=options)
