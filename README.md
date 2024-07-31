@@ -588,7 +588,7 @@ La Licencia MIT es una licencia de software permisiva que permite la reutilizaci
 
 ## 16. Información de Contacto
 
-![Perfil de Linkedin](https://www.linkedin.com/in/angelmariamartinez/)
+[Perfil de Linkedin](https://www.linkedin.com/in/angelmariamartinez/)
 
-![Documentación en Notion](https://beaded-sociology-706.notion.site/Web-Scraping-Proyecto-Individual-686701db4ac140aabaa975fde3233755)
+[Documentación en Notion](https://beaded-sociology-706.notion.site/Web-Scraping-Proyecto-Individual-686701db4ac140aabaa975fde3233755)
 
