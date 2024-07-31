@@ -2,7 +2,7 @@
 
 ## Índice
 1. [Estructura de la base de datos MySQL](#estructura-de-la-base-de-datos-mysql) 📊
-2. [Librerías de Web Scraping, Beatiful Soup o Scrapy](#librerías-de-web-scraping-beatiful-soup-o-scrapy) 🛠️
+2. [Librerías de Web Scraping, Beatiful Soup, Scrapy o Selenium ](#librerías-de-web-scraping-beatiful-soup-o-scrapy) 🛠️
 3. [Estructura del Proyecto](#estructura-del-proyecto) 📁
 4. [Documentación del Proyecto de Web Scraping con Django](#documentación-del-proyecto-de-web-scraping-con-django) 📄
     - [1. Visión General del Proyecto](#1-visión-general-del-proyecto)
@@ -64,24 +64,32 @@ CREATE TABLE quote_tags (
 ![image](https://github.com/user-attachments/assets/25daa383-fe4f-4b33-ba7e-9049f1a4ed9d)
 
 
-### Librerías de Web Scraping, Beatiful Soup o Scrapy 🛠️
+### Librerías de Web Scraping, Beatiful Soup, Scrapy o Selenium 🛠️
 
-En el archivo web_scraper.py estamos usando la librería Beautiful Soup para hacer web scraping. Cada librería tiene sus propias fortalezas:
+En el archivo `web_scraper.py` estamos usando la librería **Beautiful Soup** para hacer web scraping. Cada librería tiene sus propias fortalezas:
+
 **Beautiful Soup:**
 
 - Es más fácil de aprender y usar para proyectos pequeños a medianos.
 - Es excelente para analizar HTML y XML.
-- Se integra bien con requests para hacer peticiones HTTP.
+- Se integra bien con `requests` para hacer peticiones HTTP.
 - Es ideal para scraping de pocas páginas o sitios web simples.
 
-**Scrapy**:
+**Scrapy:**
 
 - Es un framework más completo y potente para web scraping a gran escala.
 - Tiene mejor rendimiento para proyectos grandes.
 - Incluye características como manejo de sesiones, pipelines de datos, y exportación de datos.
 - Es mejor para scraping de múltiples páginas o sitios web complejos.
 
-En este caso, Beautiful Soup es una buena elección porque el sitio que estamos scrapeando es relativamente simple y no necesitamos las características avanzadas de Scrapy.
+**Selenium:**
+
+- Está diseñado principalmente para pruebas automatizadas de aplicaciones web, pero también es útil para scraping.
+- Permite la interacción con sitios web dinámicos y cargados por JavaScript.
+- Es ideal para situaciones en las que el contenido se carga de forma dinámica o requiere interacción con formularios y botones.
+- Puede ser más lento comparado con Beautiful Soup y Scrapy, debido a la necesidad de controlar un navegador.
+
+En este caso, Beautiful Soup es una buena elección porque el sitio que estamos scrapeando es relativamente simple y no necesitamos las características avanzadas de Scrapy o la capacidad de interacción de Selenium. Sin embargo, si nos encontráramos con un sitio que carga contenido dinámicamente mediante JavaScript o que requiere interacción, Selenium sería una opción a considerar.
 
 ## Estructura del Proyecto 📁
 
